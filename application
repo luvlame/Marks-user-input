@@ -4,38 +4,73 @@ namespace StudentQualificationApp
 {
     class Program
     {
+
+        static double GetValidMark(string assessmentName)
+        {
+            double mark;
+
+            while (true)
+            {
+                Console.Write($"Enter {assessmentName} Percentage (0-100): ");
+
+                string input = Console.ReadLine();
+
+                if (double.TryParse(input, out mark))
+                {
+                    if (mark >= 0 && mark <= 100)
+                    {
+                        return mark;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error: Mark must be between 0 and 100.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Error: Please enter a valid number.");
+                }
+
+                Console.WriteLine();
+            }
+        }
+
         static void Main(string[] args)
         {
+            Console.WriteLine("=========================================");
+            Console.WriteLine(" Student Exam Qualification Calculator");
+            Console.WriteLine("=========================================\n");
 
-            Console.WriteLine(" Student Exam Qualification Calculator ");
-            Console.Write("Test 1 Percantage: ");
-            double test1 = Convert.ToDouble(Console.ReadLine());
+            // Person 2 - Reuben
+            // Collect validated marks from the user.
+            double test1 = GetValidMark("Test 1");
+            double test2 = GetValidMark("Test 2");
+            double assignment = GetValidMark("Assignment 1");
+            double project = GetValidMark("Project");
 
-            Console.Write("Test 2 Percantage: ");
-            double test2 = Convert.ToDouble(Console.ReadLine());
-
-            Console.Write("Assignment 1 Percantage: ");
-            double assignment = Convert.ToDouble(Console.ReadLine());
-
-            Console.Write("Project Percantage: ");
-            double project = Convert.ToDouble(Console.ReadLine());
-
+            // Person 1 - Qualification calculation
             double finalAverage =
                 (test1 * 0.30) +
                 (test2 * 0.50) +
                 (assignment * 0.10) +
                 (project * 0.10);
 
-            Console.WriteLine($"Average: {finalAverage:F2}%");
+            Console.WriteLine();
+            Console.WriteLine("-----------------------------------------");
+            Console.WriteLine("Final Weighted Average: " + finalAverage.ToString("F2") + "%");
+            Console.WriteLine("-----------------------------------------");
 
             if (finalAverage >= 50)
             {
-                Console.WriteLine(" Student qualifies to write the exam.");
+                Console.WriteLine("Student qualifies to write the exam.");
             }
             else
             {
                 Console.WriteLine("Student does not qualify to write the exam.");
             }
+
+            Console.WriteLine();
+            Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
         }
     }
