@@ -1,0 +1,42 @@
+using System;
+
+namespace StudentQualificationApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            Console.WriteLine(" Student Exam Qualification Calculator ");
+            Console.Write("Test 1 Percantage: ");
+            double test1 = Convert.ToDouble(Console.ReadLine());
+
+            Console.Write("Test 2 Percantage: ");
+            double test2 = Convert.ToDouble(Console.ReadLine());
+
+            Console.Write("Assignment 1 Percantage: ");
+            double assignment = Convert.ToDouble(Console.ReadLine());
+
+            Console.Write("Project Percantage: ");
+            double project = Convert.ToDouble(Console.ReadLine());
+
+            double finalAverage =
+                (test1 * 0.30) +
+                (test2 * 0.50) +
+                (assignment * 0.10) +
+                (project * 0.10);
+
+            Console.WriteLine($"Average: {finalAverage:F2}%");
+
+            if (finalAverage >= 50)
+            {
+                Console.WriteLine(" Student qualifies to write the exam.");
+            }
+            else
+            {
+                Console.WriteLine("Student does not qualify to write the exam.");
+            }
+            Console.ReadKey();
+        }
+    }
+}
